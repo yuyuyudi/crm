@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yudi.crm.workbench.dao.ClueRemarkDao">
+	
+  	<select id="getListByClueId" resultType="com.yudi.crm.workbench.domain.ClueRemark">
+        select * from tbl_clue_remark where clueid=#{clueId}
+    </select>
+
+    <delete id="delete">
+        delete from tbl_clue_remark where id=#{id}
+    </delete>
+
+    <select id="getCountByAids" resultType="int">
+        select count(*) from tbl_clue_remark
+        where clueId in
+        <foreach collection="array" item="cid" open="(" close=")" separator=",">
+            #{cid}
+        </foreach>
+    </select>
+
+    <delete id="deleteByAids">
+        delete from tbl_clue_remark
+        where clueId in
+        <foreach collection="array" item="cid" open="(" close=")" separator=",">
+            #{cid}
+        </foreach>
+    </delete>
+    <insert id="save">
+        insert into tbl_clue_remark(
+            id,
+            noteContent,
+            createBy,
+            createTime,
+            editFlag,
+            clueId
+
+        )
+        values (
+            #{id},
+            #{noteContent},
+            #{createBy},
+            #{createTime},
+            #{editFlag},
+            #{clueId}
+
+        )
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
